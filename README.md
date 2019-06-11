@@ -10,3 +10,6 @@ A ~5 seconds click on 'All' will open the settings panel. This is to authorize o
 
 # documentation #
 https://pmackenz.github.io/PySmartLights/
+
+# source #
+https://github.com/pmackenz/PySmartLights
