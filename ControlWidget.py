@@ -146,47 +146,47 @@ class ControlWidget(QFrame):
                 self.setActiveButton(idx)
 
     def pressedAll(self):
-        self.timestamp = tt.clock()
+        self.timestamp = tt.time()
 
     def releasedAll(self):
-        dt = tt.clock() - self.timestamp
-        # print('clock: {} with dt = {}'.format(self.timestamp, dt))
-        if (dt<0.015):
+        dt = tt.time() - self.timestamp
+        # print('time: {} with dt = {}'.format(self.timestamp, dt))
+        if (dt<1.000):
             self.switched('All')
-        elif (dt>0.05):
+        elif (dt>3.00):
             self.configure.emit('settings')
         else:
             self.configure.emit('All')
 
     def pressedMin(self):
-        self.timestamp = tt.clock()
+        self.timestamp = tt.time()
 
     def releasedMin(self):
-        dt = tt.clock() - self.timestamp
-        # print('clock: {} with dt = {}'.format(self.timestamp, dt))
-        if (dt<0.015):
+        dt = tt.time() - self.timestamp
+        # print('time: {} with dt = {}'.format(self.timestamp, dt))
+        if (dt<1.000):
             self.switched('Min')
         else:
             self.configure.emit('Min')
 
     def pressedTV(self):
-        self.timestamp = tt.clock()
+        self.timestamp = tt.time()
 
     def releasedTV(self):
-        dt = tt.clock() - self.timestamp
-        # print('clock: {} with dt = {}'.format(self.timestamp, dt))
-        if (dt<0.015):
+        dt = tt.time() - self.timestamp
+        # print('time: {} with dt = {}'.format(self.timestamp, dt))
+        if (dt<1.000):
             self.switched('TV')
         else:
             self.configure.emit('TV')
 
     def pressedMood(self):
-        self.timestamp = tt.clock()
+        self.timestamp = tt.time()
 
     def releasedMood(self):
-        dt = tt.clock() - self.timestamp
-        # print('clock: {} with dt = {}'.format(self.timestamp, dt))
-        if (dt<0.015):
+        dt = tt.time() - self.timestamp
+        # print('time: {} with dt = {}'.format(self.timestamp, dt))
+        if (dt<1.000):
             self.switched('Mood')
         else:
             self.configure.emit('Mood')
