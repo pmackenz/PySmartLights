@@ -57,6 +57,9 @@ class switchUI(QWidget):
         self.config.done.connect(self.doneConfiguring)
         self.settings.done.connect(self.doneSettings)
 
+        self.showFullScreen()
+        #self.showMaximized()
+
         self.show()
 
     def initConfig(self):
