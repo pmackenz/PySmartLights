@@ -35,115 +35,113 @@ class ConfigWidget(QFrame):
     def initUI(self):
 
         self.setStyleSheet("""
-                background: qlineargradient(x1: 0, y1: 0, x2: 3, y2: 2,
-                                      stop: 0 #000044, stop: 1 #111166);
+                color: #886622;
+                background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #382211, stop: 1 #1a1106);
                 """)
 
         group1 = QToolButton(self)
         group1.setIcon(QIcon('Group1-off.png'))
         group1.setIconSize(QSize(161,111))
         group1.setStyleSheet("""
-                border: none;
-                padding-left: 0px;
-                padding-right: 0px;
-                padding-top: 0px;
-                padding-bottom: 0px;
+                border-width: 1px;
+                padding: 0px;
+                margin: 0px;
                 """)
-        group1.setMaximumSize(161,111)
+        #group1.setMaximumSize(161,111)
 
         group2 = QToolButton(self)
         group2.setIcon(QIcon('Group1-off.png'))
         group2.setIconSize(QSize(161,111))
         group2.setStyleSheet("""
-                border: none;
-                padding-left: 0px;
-                padding-right: 0px;
-                padding-top: 0px;
-                padding-bottom: 0px;
+                border-width: 1px;
+                padding: 0px;
+                margin: 0px;
                 """)
-        group2.setMaximumSize(161,111)
+        #group2.setMaximumSize(161,111)
 
         group3 = QToolButton(self)
         group3.setIcon(QIcon('Group3-off.png'))
         group3.setIconSize(QSize(161,211))
         group3.setStyleSheet("""
-                 border: none;
-                 padding-left: 0px;
-                 padding-right: 0px;
-                 padding-top: 0px;
-                 padding-bottom: 0px;
-                """);
-        group3.setMaximumSize(161,211)
+                border-width: 1px;
+                padding: 0px;
+                margin: 0px;
+                """)
+        #group3.setMaximumSize(161,211)
 
         group4 = QToolButton(self)
         group4.setIcon(QIcon('Group3-off.png'))
         group4.setIconSize(QSize(161,211))
         group4.setStyleSheet("""
-                border: none;
-                padding-left: 0px;
-                padding-right: 0px;
-                padding-top: 0px;
-                padding-bottom: 0px;
+                border-width: 1px;
+                padding: 0px;
+                margin: 0px;
                 """)
-        group4.setMaximumSize(161,211)
+        #group4.setMaximumSize(161,211)
 
         group5 = QToolButton(self)
         group5.setIcon(QIcon('Group5-off.png'))
         group5.setIconSize(QSize(461,111))
         group5.setContentsMargins(0,0,0,0)
         group5.setStyleSheet("""
-                border: none;
-                padding-left: 0px;
-                padding-right: 0px;
-                padding-top: 0px;
-                padding-bottom: 0px;
+                border-width: 1px;
+                padding: 0px;
+                margin: 0px;
                 """)
-        group5.setMaximumSize(461,111)
+        #group5.setMaximumSize(461,111)
 
         group6 = QToolButton(self)
         group6.setIcon(QIcon('Group6-off.png'))
         group6.setIconSize(QSize(311,111))
         group6.setStyleSheet("""
-                border: none;
-                padding-left: 0px;
-                padding-right: 0px;
-                padding-top: 0px;
-                padding-bottom: 0px;
+                border-width: 10px;
+                padding: 0px;
+                margin: 0px;
                 """)
-        group6.setMaximumSize(311,111)
+        #group6.setMaximumSize(311,111)
 
         group7 = QToolButton(self)
         group7.setIcon(QIcon('Group6-off.png'))
         group7.setIconSize(QSize(311,111))
         group7.setStyleSheet("""
-                border: none;
-                padding-left: 0px;
-                padding-right: 0px;
-                padding-top: 0px;
-                padding-bottom: 0px;
+                border-width: 1px;
+                padding: 0px;
+                margin: 0px;
                 """)
-        group7.setMaximumSize(311,111)
+        #group7.setMaximumSize(311,111)
 
         group8 = QToolButton(self)
         group8.setIcon(QIcon('Group6-off.png'))
         group8.setIconSize(QSize(311,111))
         group8.setStyleSheet("""
-                border: none;
-                padding-left: 0px;
-                padding-right: 0px;
-                padding-top: 0px;
-                padding-bottom: 0px;
+                border-width: 1px;
+                padding: 0px;
+                margin: 0px;
                 """)
-        group8.setMaximumSize(311,111)
+        #group8.setMaximumSize(311,111)
+
+        group1.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        group2.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        group3.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        group4.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        group5.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        group6.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        group7.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        group8.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         # control buttons
         btnOK = QPushButton('OK',self)
         btnOK.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         btnOK.setStyleSheet("""
                     font: bold 45pt;
-                    color: #0000aa;
-                    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #5577ff, stop: 1 #334499);
+                    color: #ffcc44;
+                    background: qlineargradient(x1: 0, y1: 0, x2: 3, y2: 2,
+                                      stop: 0 #000044, stop: 1 #111166);
+                    border-width: 1px;
+                    padding: 0px;
+                    margin: 3px 3px;
+                    margin-left: 10px;
                     """)
 
         btnCancel = QPushButton('X',self)
@@ -151,14 +149,19 @@ class ConfigWidget(QFrame):
         btnCancel.setStyleSheet("""
                     font: bold 45pt;
                     color: #aa0000;
-                    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #5577ff, stop: 1 #334499);
+                    background: qlineargradient(x1: 0, y1: 0, x2: 3, y2: 2,
+                                      stop: 0 #000044, stop: 1 #111166);
+                    border-width: 1px;
+                    padding: 0px;
+                    margin: 3px 3px;
+                    margin-left: 10px;
                     """)
 
 
         lyt = QGridLayout()
         lyt.setContentsMargins(0,0,0,0)
-        lyt.setSpacing(-1)
+        #lyt.setContentsMargins(6,6,6,6)
+        lyt.setSpacing(0)
 
         lyt.addWidget(group1, 0,0,1,1)
         lyt.addWidget(group2, 0,3,1,1)
@@ -172,11 +175,11 @@ class ConfigWidget(QFrame):
         lyt.addWidget(btnCancel, 0,4,2,1)
         lyt.addWidget(btnOK,     2,4,2,1)
 
-        lyt.setColumnStretch(0, 0)
-        lyt.setColumnStretch(1, 0)
-        lyt.setColumnStretch(2, 0)
-        lyt.setColumnStretch(3, 0)
-        lyt.setColumnStretch(4, 1)
+        lyt.setColumnStretch(0, 1)
+        lyt.setColumnStretch(1, 1)
+        lyt.setColumnStretch(2, 1)
+        lyt.setColumnStretch(3, 1)
+        lyt.setColumnStretch(4, 0)
 
         lyt.setColumnMinimumWidth(4,100)
 

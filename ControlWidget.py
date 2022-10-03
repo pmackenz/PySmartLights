@@ -36,6 +36,10 @@ class ControlWidget(QFrame):
                     background: #334499;
                 """)
 
+        self.setStyleSheet("""
+                    background: #000000;
+                """)
+
         btnAll  = QPushButton('All ON', self)
         btnTV   = QPushButton('TV', self)
         btnMood = QPushButton('Mood\nlight', self)
@@ -45,26 +49,6 @@ class ControlWidget(QFrame):
         slider.setFixedWidth(80)
         slider.setMaximum(255)
         slider.setMinimum(32)
-
-        slider.setStyleSheet("""
-                QSlider::groove:vertical {
-                    border: 1px solid;
-                    border: None;
-                    width: 80px;
-                    margin: 0px;
-                    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #5577ff, stop: 1 #334499);
-                    }
-                QSlider::handle:vertical {
-                    background-color: #88ccff;
-                    border: 1px solid;
-                    height: 80px;
-                    width: 50px;
-                    margin: -15px -15px;
-                    margin: 0px 0px;
-                    border-radius: 10px;
-    }
-                """)
 
         self.buttons = {'All': btnAll,
                         'Min': btnMin,
@@ -105,26 +89,92 @@ class ControlWidget(QFrame):
         btnTV.released.connect(self.releasedTV)
 
         slider.valueChanged.connect(self.dimmer)
+        slider.sliderPressed.connect(self.highlightSlider)
+        slider.sliderReleased.connect(self.dimSlider)
+
+        slider.sliderReleased.emit()
 
         self.show()
+
+    def highlightSlider(self):
+        slider = self.sender()
+        slider.setStyleSheet("""
+                        QSlider::groove:vertical {
+                            border: 1px solid;
+                            border: None;
+                            width: 80px;
+                            margin: 0px;
+                            background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                              stop: 0 #802211, stop: 1 #101106);
+                            }
+                        QSlider::handle:vertical {
+                            background-color: #ffcc44;
+                            border: 1px solid;
+                            height: 50;
+                            width: 50px;
+                            margin: -15px -15px;
+                            margin: 0px 0px;
+                            border-radius: 10px;
+                            }
+                        """)
+
+    def dimSlider(self):
+        slider = self.sender()
+        slider.setStyleSheet("""
+                        QSlider::groove:vertical {
+                            border: 1px solid;
+                            border: None;
+                            width: 80px;
+                            margin: 0px;
+                            background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                              stop: 0 #802211, stop: 1 #101106);
+                            }
+                        QSlider::handle:vertical {
+                            background-color: #886622;
+                            border: 1px solid;
+                            height: 20px;
+                            width: 50px;
+                            margin: -15px -15px;
+                            margin: 0px 0px;
+                            border-radius: 10px;
+                            }
+                        """)
 
     def setActive(self, idx, state=True):
         # control appearance of the active button
         if type(idx) is str:
             if state:
+                # self.buttons[idx].setStyleSheet("""
+                #     font: bold 45pt;
+                #     color: #886622;
+                #     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                #                       stop: 0 #ffcc44, stop: 1 #ddaa33);
+                #     """)
                 self.buttons[idx].setStyleSheet("""
                     font: bold 45pt; 
-                    color: #886622;
+                    color: #ffcc44;
                     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #ffcc44, stop: 1 #ddaa33);
+                                      stop: 0 #442211, stop: 1 #331106);
+                    border: 1px solid;
+                    border-color: #ffcc44;
+                    margin: 0px 0px;
                     """)
                 self.states[idx] = True
             else:
+                # self.buttons[idx].setStyleSheet("""
+                #     font: bold 45pt;
+                #     color: #ffcc44;
+                #     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                #                       stop: 0 #aaaaaa, stop: 1 #cccccc);
+                #     """)
                 self.buttons[idx].setStyleSheet("""
                     font: bold 45pt;
-                    color: #ffcc44;
+                    color: #886622;
                     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #aaaaaa, stop: 1 #cccccc);
+                                      stop: 0 #111111, stop: 1 #000000);
+                    border: 1px solid;
+                    border-color: #886622;
+                    margin: 3px 3px;
                     """)
                 self.states[idx] = False
 

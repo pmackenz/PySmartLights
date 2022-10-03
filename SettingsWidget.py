@@ -1,7 +1,7 @@
 from PyQt5.QtCore import pyqtSignal
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QPushButton, QFrame, QVBoxLayout, QLabel, QTableWidget
+from PyQt5.QtCore import Qt, QCoreApplication
+from PyQt5.QtWidgets import QPushButton, QFrame, QGridLayout, QLabel, QTableWidget, QSizePolicy
 
 class SettingsWidget(QFrame):
     """
@@ -47,8 +47,18 @@ class SettingsWidget(QFrame):
                 background: white;
                 """)
 
-        btn = QPushButton('Done',self)
-        btn.setStyleSheet("""
+        quit_btn = QPushButton('Quit Controller',self)
+        quit_btn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        quit_btn.setStyleSheet("""
+                    font: bold 24pt;
+                    color: #ffcc44;
+                    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #ff7755, stop: 1 #994433);
+                    """)
+
+        ok_btn = QPushButton('Done',self)
+        ok_btn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        ok_btn.setStyleSheet("""
                     font: bold 32pt;
                     color: #ffcc44;
                     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -56,15 +66,22 @@ class SettingsWidget(QFrame):
                     """)
 
 
-        lyt = QVBoxLayout()
-        lyt.addWidget(lbl)
-        lyt.addWidget(tbl)
-        lyt.addWidget(btn)
+        lyt = QGridLayout()
+        lyt.addWidget(lbl,0,0,1,2)
+        lyt.addWidget(tbl,1,0,1,2)
+        lyt.addWidget(quit_btn,2,0,1,1)
+        lyt.addWidget(ok_btn,2,1,1,1)
+
+        lyt.setRowStretch(1,2)
         self.setLayout(lyt)
 
-        btn.clicked.connect(self.on_btn_clicked)
+        ok_btn.clicked.connect(self.on_btn_clicked)
+        quit_btn.clicked.connect(self.terminate)
 
         self.show()
+
+    def terminate(self):
+        QCoreApplication.quit()
 
     def on_btn_clicked(self):
         self.done.emit()

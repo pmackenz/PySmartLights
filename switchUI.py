@@ -5,6 +5,8 @@ from ControlWidget import *
 from ConfigWidget import *
 from SettingsWidget import *
 
+import json
+
 class switchUI(QWidget):
     """
     class documentation
@@ -32,6 +34,9 @@ class switchUI(QWidget):
         return "switchUI()"
 
     def initUI(self):
+        # this will hide the title bar
+        self.setWindowFlag(Qt.FramelessWindowHint)
+
         self.stack = QStackedWidget(self)
 
         self.control  = ControlWidget(self)
