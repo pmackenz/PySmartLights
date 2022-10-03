@@ -57,25 +57,31 @@ class switchUI(QWidget):
         self.config.done.connect(self.doneConfiguring)
         self.settings.done.connect(self.doneSettings)
 
-        self.showFullScreen()
-        #self.showMaximized()
+        #self.showFullScreen()
 
         self.show()
 
     def initConfig(self):
-        # we should check if a config file exists
+        # check if a config file exists
+        try:
+            f = open('switch_settings.json', 'r')
+            json_settings = json.load(f)
+            self.settings = json_settings.JSONDecoder()
+        except:
+            # create defaults if no file exists
+            self.settings = {
+                    'All':[True,True,True,True,True,True,True,True],
+                    'Min':[False,False,False,False,True,False,False,False],
+                    'TV':[True,False,True,False,False,False,False,False],
+                    'Mood':[True,True,True,True,False,True,False,False],
+                    'level': 255,
+                    'ActiveKey': 'All'
+                             }
 
-        # read if exists
-
-        # create defaults if no file exists
-        self.settings = {
-                'All':[True,True,True,True,True,True,True,True],
-                'Min':[False,False,False,False,True,False,False,False],
-                'TV':[True,False,True,False,False,False,False,False],
-                'Mood':[True,True,True,True,False,True,False,False]
-                         }
-
-        self.activeKey = 'All'
+        if 'ActiveKey' in self.settings:
+            self.activeKey = self.settings['ActiveKey']
+        else:
+            self.activeKey = 'All'
 
     def configure(self, key):
 

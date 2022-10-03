@@ -4,10 +4,13 @@ from PyQt5.QtWidgets import QFrame, QGridLayout, QPushButton, QSlider, QSizePoli
 
 import time as tt
 
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+except:
+    print("No module named RPi available")
 
 RELAIS_1_GPIO = 23
 RELAIS_2_GPIO = 24
@@ -202,7 +205,7 @@ class ControlWidget(QFrame):
 
     def setActiveButton(self, idx):
         if type(idx) is str:
-            for key in self.buttons.keys():
+            for key in self.buttons:
                 self.setActive(key, False)
             self.setActive(idx, True)
 
