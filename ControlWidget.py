@@ -4,6 +4,21 @@ from PyQt5.QtWidgets import QFrame, QGridLayout, QPushButton, QSlider, QSizePoli
 
 import time as tt
 
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+RELAIS_1_GPIO = 23
+RELAIS_2_GPIO = 24
+RELAIS_3_GPIO = 10
+RELAIS_4_GPIO = 25
+RELAIS_5_GPIO = 9
+RELAIS_6_GPIO = 8
+RELAIS_7_GPIO = 11
+RELAIS_8_GPIO = 7
+
+
 class ControlWidget(QFrame):
     """
     class documentation:
@@ -21,6 +36,10 @@ class ControlWidget(QFrame):
 
     def __init__(self, parent=None):
         super(ControlWidget, self).__init__(parent)
+        self.relays = (
+            RELAIS_1_GPIO, RELAIS_2_GPIO, RELAIS_3_GPIO, RELAIS_4_GPIO,
+            RELAIS_5_GPIO, RELAIS_6_GPIO, RELAIS_7_GPIO, RELAIS_8_GPIO
+        )
         self.initUI()
         self.setActiveButton('All')
 
@@ -243,3 +262,15 @@ class ControlWidget(QFrame):
 
     def dimmer(self, val):
         print('+++ dimmer: {}'.format(val))
+
+    def setLights(self, states, level):
+        # set dimmer to level
+        pass
+
+        # activate relais
+        for (state, relais_GPIO) in zip(states, self.relays):
+            GPIO.setup(relais_GPIO, GPIO.OUT)  # GPIO Assign mode
+            if state:
+                GPIO.output(relais_GPIO, GPIO.LOW)  # out
+            else:
+                GPIO.output(relais_GPIO, GPIO.HIGH)  # on
